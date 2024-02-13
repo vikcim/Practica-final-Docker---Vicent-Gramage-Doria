@@ -1,4 +1,4 @@
-# Práctica Final Docker
+# Práctica Final Docker - Vicent Gramage Doria
 
 Esta práctica utiliza Docker y Docker Compose para desplegar una aplicación compuesta por varios servicios. La aplicación incluye una base de datos MongoDB, una interfaz web para administrar MongoDB (Mongo Express), un backend, un frontend, un balanceador de carga Nginx, un servidor de métricas Prometheus y un tablero de visualización Grafana.
 
