@@ -1,35 +1,60 @@
 # Práctica Final Docker
 
-Documentar correctamente y de forma clara el proceso de dockerización de una aplicación de
-servidor utilizando docker-compose, podéis utilizar la aplicación de la asignatura de servidor.
+Esta práctica utiliza Docker y Docker Compose para desplegar una aplicación compuesta por varios servicios. La aplicación incluye una base de datos MongoDB, una interfaz web para administrar MongoDB (Mongo Express), un backend, un frontend, un balanceador de carga Nginx, un servidor de métricas Prometheus y un tablero de visualización Grafana.
 
-## Instalación y Configuración
+## Servicios
 
-### Requisitos Previos
+- **MongoDB (mongo_container)**:
+  - Puerto: No expuesto al exterior
+  - Imagen: mongo
+  - Reinicio: Siempre
 
-- Docker
-- Docker Compose
+- **Mongo Express (adminMongo_container)**:
+  - Puerto: 8081
+  - Imagen: mongo-express
+  - Reinicio: Siempre
 
-### Instalación
+- **Backend (backend_container)**:
+  - Puerto: No expuesto al exterior
+  - Imagen: Personalizada (definida en Dockerfile)
 
-1. Clona este repositorio.
-2. cd proyecto
-3. Ejecuta `docker-compose up -d`.
+- **Frontend (frontend_container)**:
+  - Puerto: No expuesto al exterior
+  - Imagen: Personalizada (definida en Dockerfile)
 
-### Configuración
+- **Nginx (nginx_container)**:
+  - Puerto: 80
+  - Imagen: nginx
+  - Reinicio: Siempre
 
-- Configurar el archivo ".env" para las variables de entorno.
+- **Prometheus (prometheus_container)**:
+  - Puerto: 9090
+  - Imagen: prom/prometheus:v2.20.1
+  - Reinicio: Siempre
 
-## Cómo Ejecutar
+- **Grafana (grafana_container)**:
+  - Puerto: 3500
+  - Imagen: grafana/grafana:7.1.5
+  - Reinicio: Siempre
 
-1. Ejecuta `docker-compose up -d`.
-2. Accede a la aplicación en http://localhost:puerto.
-// posar asi tots els ports dels servicis que vajen
+## Archivos
 
-## Cómo Utilizar
+- **Dockerfile**:
+  - Se encuentra en la carpeta `./backend` y `./frontend` para construir las imágenes personalizadas.
 
-- Describe cómo usar la aplicación, interactuar con la interfaz de usuario, enviar solicitudes a la API, etc.
+- **docker-compose.yml**:
+  - Define la configuración de todos los servicios y sus dependencias.
 
-## Documentación Adicional
+- **prometheus.yml**:
+  - Contiene la configuración de Prometheus para la recopilación de métricas.
 
-- Enlaces a otras documentaciones, notas de versión, ejemplos de uso, etc.
+- **nginx.conf**:
+  - Configuración del servidor Nginx.
+
+## Ejecución
+
+1. Clonar este repositorio.
+2. Asegurarse de tener Docker y Docker Compose instalados.
+3. Ejecutar `docker-compose up -d` en el directorio raíz del repositorio.
+4. Acceder a la aplicación a través de los puertos especificados en cada servicio.
+
